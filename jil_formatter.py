@@ -55,7 +55,7 @@ def parse_jil(lines):
             match = re.match(job_indicator_regex, line)
             if match:
                 job = match.group(1)
-                jobs.update({ job : list() })
+                jobs.update({ job : [] })
         else:
             jobs[job].append(line)
     
