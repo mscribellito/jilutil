@@ -24,7 +24,7 @@ def main(args):
     jobs = parse_jil(lines)
     print('Jobs after parsing: {}'.format(len(jobs)))
 
-    write_jil(args.path, jobs)
+    write_jil(args.path, jobs, args.reverse)
 
 def read_jil(path):
 
@@ -61,11 +61,11 @@ def parse_jil(lines):
     
     return jobs
 
-def write_jil(path, jobs):
+def write_jil(path, jobs, reversed=False):
 
     """writes JIL code to file"""
 
-    job_names = sorted(jobs)
+    job_names = sorted(jobs, reverse=reversed)
 
     with open(path, 'w') as f:
         for job in job_names:
@@ -80,6 +80,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='AutoSys JIL Formatter')
     parser.add_argument('path', type=str, help='path to JIL file')
     parser.add_argument('-b', '--backup', action='store_true', help='make a backup of the changed file')
+    parser.add_argument('-r', '--reverse', action='store_true', help='sort jobs in descending order by name')
 
     args = parser.parse_args()
     
