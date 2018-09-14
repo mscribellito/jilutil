@@ -1,5 +1,6 @@
 """
 AutoSys JIL formatter command line utility
+Author: Michael Scribellito
 """
 
 import argparse
