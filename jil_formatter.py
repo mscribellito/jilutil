@@ -3,9 +3,8 @@ AutoSys JIL formatter command line utility
 Author: Michael Scribellito
 """
 
-import argparse
-import os
-import re
+from argparse import ArgumentParser
+from re import match
 from shutil import copyfile
 
 job_indicator_regex = '\\/\\*\\s*\\-*\\s*([a-zA-Z0-9_-]*)\\s*\\-*\\s*\\*\\/'
@@ -53,9 +52,9 @@ def parse_jil(lines):
     for line in lines:
         
         if line.startswith(job_indicator_start):
-            match = re.match(job_indicator_regex, line)
-            if match:
-                job = match.group(1)
+            matches = match(job_indicator_regex, line)
+            if matches:
+                job = matches.group(1)
                 jobs.update({ job : [] })
         else:
             jobs[job].append(line)
@@ -78,7 +77,7 @@ def write_jil(path, jobs, reversed=False):
 
 if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser(description='AutoSys JIL Formatter')
+    parser = ArgumentParser(description='AutoSys JIL Formatter')
     parser.add_argument('path', type=str, help='path to JIL file')
     parser.add_argument('-b', '--backup', action='store_true', help='make a backup of the changed file')
     parser.add_argument('-r', '--reverse', action='store_true', help='sort jobs in descending order by name')
