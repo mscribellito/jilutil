@@ -19,7 +19,9 @@ Advanced usage for formatting a JIL file.
 
 ### Optional Arguments
 
+- -f, --format : format the file
 - -b, --backup : make a backup of the changed file
 - -r, --reverse : sort jobs in descending order by name
 
-```python jil_formatter.py some_JIL_file.txt -b -r```
+- -c, --check : check for jobs matching attribute
+- -a, --attribute : attribute to search for
