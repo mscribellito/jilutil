@@ -11,7 +11,7 @@ Basic usage for formatting a JIL file.
 ### Positional Arguments
 - path : path to JIL file
 
-```python jil_formatter.py some_JIL_file.txt```
+```python jilutil.py -f some_JIL_file.txt```
 
 ## Advanced Usage
 
