@@ -1,4 +1,4 @@
-# JIL Formatter
+# JIL Utility
 AutoSys JIL command line utility
 
 ## What is JIL?
