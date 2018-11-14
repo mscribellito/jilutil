@@ -4,11 +4,12 @@ from datetime import datetime
 import os
 from autosys import AutoSysJob, JilParser
 
-def export_jil(jobs, path):
+def export_jil(jobs, path, reversed):
     """Exports jobs to a CSV file"""
 
     file = '{} - {}.csv'.format(os.path.splitext(path)[0], datetime.now().strftime("%Y%m%d_%H%M%S"))
-    print(file)
+    
+    jobs.sort(key=lambda x: x.job_name, reverse=reversed)
 
     with open(file, 'w', newline='') as csv_file:
 
@@ -52,7 +53,7 @@ def main(args):
     print('{} jobs parsed'.format(len(jobs)))
 
     if args.export:
-        export_jil(jobs, args.path)
+        export_jil(jobs, args.path, args.reverse)
     
     if args.format:
         format_jil(jobs, args.path, args.new, args.reverse)
@@ -66,6 +67,7 @@ if __name__ == '__main__':
 
     parser.add_argument('-f', '--format', action='store_true', help='format the JIL source file')
     parser.add_argument('-n', '--new', action='store_true', help='format the JIL source file as a new file')
+
     parser.add_argument('-r', '--reverse', action='store_true', help='sort jobs in descending order by name')
 
     args = parser.parse_args()
