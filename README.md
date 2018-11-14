@@ -21,5 +21,6 @@ Advanced usage for formatting a JIL file.
 
 - -e, --export : export jobs to CSV file
 
-- -f, --format : format the JIL source file as a new file
+- -f, --format : format the JIL source file
+- -n, --new : format the JIL source file as a new file
 - -r, --reverse : sort jobs in descending order by name
