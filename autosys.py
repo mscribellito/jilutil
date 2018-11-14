@@ -2,13 +2,17 @@ from re import match
 
 class JilParser:
 
+    """Class that parses JIL into jobs"""
+
     job_comment = '/* -----------------'
 
     def __init__(self, path):
+        """Instantiates a new instance"""
 
         self.path = path
 
     def read_jil(self):
+        """Reads JIL from a file"""
 
         lines = []
 
@@ -22,6 +26,7 @@ class JilParser:
         return lines
 
     def find_jobs(self, lines):
+        """Finds jobs from lines"""
 
         jobs = {}
         job = ''
@@ -39,6 +44,7 @@ class JilParser:
         return jobs
     
     def parse_jobs(self):
+        """Parses jobs from JIL"""
 
         lines = self.read_jil()
         raw_jobs = self.find_jobs(lines)
@@ -52,23 +58,28 @@ class JilParser:
 
 class AutoSysJob:
 
+    """Class that represents a job within AutoSys and its attributes"""
+
     comments = ('/*', '#')
     default_attributes = {'insert_job': '','job_type': '','box_name': '','command': '','machine': '','owner': '','permission': '','date_conditions': '','days_of_week': '','start_times': '','run_window': '','condition': '','description': '','n_retrys': '','term_run_time': '','box_terminator': '','job_terminator': '','std_out_file': '','std_err_file': '','min_run_alarm': '','max_run_alarm': '','alarm_if_fail': '','max_exit_status': '','chk_files': '','profile': '','job_load': '','priority': '','auto_delete': '','group': '','application': '', 'exclude_calendar': '', 'send_notification': '', 'notification_msg': '', 'notification_emailaddress': '', 'success_codes': ''}
     
     job_name_comment = '/* ----------------- {} ----------------- */'
     job_start_regex = '\\/\\*\\s*\\-*\\s*([a-zA-Z0-9\\.\\#_-]{1,64})\\s*\\-*\\s*\\*\\/'    
 
-    def __init__(self):
+    def __init__(self, job_name = ''):
+        """Instantiates a new instance"""
 
-        self.job_name = ""
+        self.job_name = job_name
         self._attributes = {}
     
     @property
     def attributes(self):
+        """Returns attributes"""
 
         return self._attributes
     
     def __repr__(self):
+        """Returns string representation"""
 
         job_str = self.job_name_comment.format(self._attributes['insert_job']) + '\n\n'
 
@@ -84,6 +95,7 @@ class AutoSysJob:
 
     @classmethod
     def from_str(cls, jil):
+        """Creates a new job from a string"""
 
         job = cls()
 
