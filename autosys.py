@@ -61,7 +61,43 @@ class AutoSysJob:
     """Class that represents a job within AutoSys and its attributes"""
 
     comments = ('/*', '#')
-    default_attributes = {'insert_job': '','job_type': '','box_name': '','command': '','machine': '','owner': '','permission': '','date_conditions': '','days_of_week': '','start_times': '','run_window': '','condition': '','description': '','n_retrys': '','term_run_time': '','box_terminator': '','job_terminator': '','std_out_file': '','std_err_file': '','min_run_alarm': '','max_run_alarm': '','alarm_if_fail': '','max_exit_status': '','chk_files': '','profile': '','job_load': '','priority': '','auto_delete': '','group': '','application': '', 'exclude_calendar': '', 'send_notification': '', 'notification_msg': '', 'notification_emailaddress': '', 'success_codes': ''}
+    default_attributes = {
+        'insert_job': '',
+        'job_type': '',
+        'box_name': '',
+        'command': '',
+        'machine': '',
+        'owner': '',
+        'permission': '',
+        'date_conditions': '',
+        'days_of_week': '',
+        'start_times': '',
+        'condition': '',
+        'description': '',
+        'std_out_file': '',
+        'std_err_file': '',
+        'alarm_if_fail': '',
+        'group': '',
+        'application': '',
+        'send_notification': '',
+        'notification_msg': '',
+        'success_codes': '',
+        'notification_emailaddress': '',
+        'auto_delete': '',
+        'box_terminator': '',
+        'chk_files': '',
+        'exclude_calendar': '',
+        'job_load': '',
+        'job_terminator': '',
+        'max_exit_status': '',
+        'max_run_alarm': '',
+        'min_run_alarm': '',
+        'n_retrys': '',
+        'priority': '',
+        'profile': '',
+        'run_window': '',
+        'term_run_time': ''
+    }
     
     job_name_comment = '/* ----------------- {} ----------------- */'
     job_start_regex = '\\/\\*\\s*\\-*\\s*([a-zA-Z0-9\\.\\#_-]{1,64})\\s*\\-*\\s*\\*\\/'    
