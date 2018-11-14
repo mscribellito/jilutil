@@ -9,9 +9,9 @@ Job Information Language (JIL) is a scripting language that lets you define and 
 Basic usage for formatting a JIL file.
 
 ### Positional Arguments
-- path : path to JIL file
+- path : path to JIL source file
 
-```python jilutil.py -f some_JIL_file.txt```
+```python jilutil.py some_JIL_file.txt```
 
 ## Advanced Usage
 
@@ -19,9 +19,7 @@ Advanced usage for formatting a JIL file.
 
 ### Optional Arguments
 
-- -f, --format : format the file
-- -b, --backup : make a backup of the changed file
-- -r, --reverse : sort jobs in descending order by name
+- -e, --export : export jobs to CSV file
 
-- -c, --check : check for jobs matching attribute
-- -a, --attribute : attribute to search for
+- -f, --format : format the JIL source file as a new file
+- -r, --reverse : sort jobs in descending order by name
