@@ -1,0 +1,52 @@
+/* ----------------- SAMPLE_BOX_JOB ----------------- */ 
+
+insert_job: SAMPLE_BOX_JOB   job_type: BOX 
+owner: root@domain
+permission: gx,ge,wx,we,mx,me
+date_conditions: 1
+days_of_week: su,mo,tu,we,th,fr,sa
+start_times: "20:00"
+description: "Sample box job"
+alarm_if_fail: 1
+group: SOME_GROUP
+
+/* ----------------- SAMPLE_CMD_JOB_1 ----------------- */ 
+
+insert_job: SAMPLE_CMD_JOB_1   job_type: CMD 
+box_name: SAMPLE_BOX_JOB
+command: "C:\do_something1.bat"
+machine: LOCALHOST
+owner: root@domain
+permission: gx,ge,wx,we,mx,me
+date_conditions: 0
+description: "Sample cmd job"
+std_out_file: "%AUTOUSER%\LOG\out\%AUTO_JOB_NAME%.%AUTOPID%.out"
+std_err_file: "%AUTOUSER%\LOG\error\%AUTO_JOB_NAME%.%AUTOPID%.err"
+alarm_if_fail: 0
+group: SOME_GROUP
+application: SOME_APP
+send_notification: F
+notification_msg: "SAMPLE_CMD_JOB_1 failed"
+success_codes: 0
+notification_emailaddress: admin@domain.com
+
+/* ----------------- SAMPLE_CMD_JOB_2 ----------------- */ 
+
+insert_job: SAMPLE_CMD_JOB_2   job_type: CMD 
+box_name: SAMPLE_BOX_JOB
+command: "C:\do_something2.bat"
+machine: LOCALHOST
+owner: root@domain
+permission: gx,ge,wx,we,mx,me
+date_conditions: 0
+condition: s(SAMPLE_CMD_JOB_1)
+description: "Sample cmd job"
+std_out_file: "%AUTOUSER%\LOG\out\%AUTO_JOB_NAME%.%AUTOPID%.out"
+std_err_file: "%AUTOUSER%\LOG\error\%AUTO_JOB_NAME%.%AUTOPID%.err"
+alarm_if_fail: 0
+group: SOME_GROUP
+application: SOME_APP
+send_notification: F
+notification_msg: "SAMPLE_CMD_JOB_2 failed"
+success_codes: 0
+notification_emailaddress: admin@domain.com
