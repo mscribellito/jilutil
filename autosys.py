@@ -28,18 +28,19 @@ class JilParser:
     def find_jobs(self, lines):
         """Finds jobs from lines"""
 
-        jobs = {}
-        job = ''
+        jobs = []
+        job = []
+        i = -1
 
         for line in lines:
             
             if line.startswith(self.job_comment):
                 matches = match(AutoSysJob.job_start_regex, line)
                 if matches:
-                    job = matches.group(1)
-                    jobs.update({ job : [] })
+                    jobs.append([])
+                    i += 1
             else:
-                jobs[job].append(line)
+                jobs[i].append(line)
         
         return jobs
     
@@ -50,7 +51,7 @@ class JilParser:
         raw_jobs = self.find_jobs(lines)
         parsed_jobs = []
 
-        for definition in raw_jobs.values():
+        for definition in raw_jobs:
             job = AutoSysJob.from_str('\n'.join(definition))
             parsed_jobs.append(job)
         
