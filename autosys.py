@@ -29,7 +29,6 @@ class JilParser:
         """Finds jobs from lines"""
 
         jobs = []
-        job = []
         i = -1
 
         for line in lines:
