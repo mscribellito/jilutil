@@ -31,7 +31,7 @@ def format_jil(jobs, path, new, reversed):
     """Formats jobs to a JIL file"""
 
     if new == True:
-        file = '{} - {}.txt'.format(os.path.splitext(path)[0], datetime.now().strftime("%Y%m%d_%H%M%S"))
+        file = '{} - {}.jil'.format(os.path.splitext(path)[0], datetime.now().strftime("%Y%m%d_%H%M%S"))
     else:
         file = path
 
