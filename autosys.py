@@ -117,14 +117,15 @@ class AutoSysJob:
     def __repr__(self):
         """Returns string representation"""
 
-        job_str = self.job_name_comment.format(self._attributes['insert_job']) + '\n\n'
+        atts = self._attributes.copy()
 
-        for attribute, value in self._attributes.items():
-            if attribute == 'job_type':
-                continue
-            if attribute == 'insert_job':
-                job_str += '{}: {}   {}: {}\n'.format(attribute, value, 'job_type', self._attributes['job_type'])
-            else:
+        job_str = self.job_name_comment.format(atts['insert_job']) + '\n\n'
+
+        job_str += 'insert_job: {}   job_type: {}\n'.format(atts['insert_job'], atts['job_type'])
+        del atts['insert_job']
+        del atts['job_type']
+
+        for attribute, value in sorted(atts.items()):
                 job_str += '{}: {}\n'.format(attribute, value)
 
         return job_str
