@@ -126,7 +126,9 @@ class AutoSysJob:
         del atts['job_type']
 
         for attribute, value in sorted(atts.items()):
-                job_str += '{}: {}\n'.format(attribute, value)
+            if not value:
+                continue
+            job_str += '{}: {}\n'.format(attribute, value)
 
         return job_str
 
@@ -135,6 +137,7 @@ class AutoSysJob:
         """Creates a new job from a string"""
 
         job = cls()
+        job._attributes = cls().default_attributes.copy()
 
         jil = jil.replace('job_type', '\njob_type', 1)
         jil = jil.replace('\r\n', '\n')
