@@ -44,10 +44,6 @@ def format_jil(jobs, path, new, reversed):
 
     print("formatted to '{}'".format(file))
 
-def exec_order(jobs, args):
-
-    filtered = [j for j in jobs if j.attributes['start_times']]
-
 def main(args):
 
     jil_parser = JilParser(args.path)
@@ -55,9 +51,6 @@ def main(args):
     jobs = jil_parser.parse_jobs()
 
     print('{} jobs parsed'.format(len(jobs)))
-
-    if args.sort == 'exec':
-        exec_order(jobs, args)
 
     if args.export:
         export_jil(jobs, args.path, args.reverse)
@@ -75,7 +68,6 @@ if __name__ == '__main__':
     parser.add_argument('-f', '--format', action='store_true', help='format the JIL source file')
     parser.add_argument('-n', '--new', action='store_true', help='format the JIL source file as a new file')
 
-    parser.add_argument('-s', '--sort', default='alpha', choices=['alpha', 'exec'], help='')
     parser.add_argument('-r', '--reverse', action='store_true', help='sort jobs in descending order by name')
 
     args = parser.parse_args()
