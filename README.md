@@ -28,3 +28,6 @@ Exports jobs contained in the JIL source file in ascending order by name to a CS
 
 ### Format
 Formats jobs contained in the JIL source file in ascending order by name, optionally as a new file.
+
+### Info
+Outputs jobs contained in the JIL source file in ascending order by name to stdout.
