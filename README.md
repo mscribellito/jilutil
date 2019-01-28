@@ -15,11 +15,12 @@ Basic usage for working with a JIL file.
 
 ### Optional Arguments
 - -h, --help - show this help message and exit
-- -e, --export - export jobs to CSV file
-- -f, --format - format the JIL source file
-- -n, --new - format the JIL source file as a new file
-- -i, --info - show job info
-- -r, --reverse - sort jobs in descending order by name
+- -e, --export - Exports jobs contained in the JIL source file in ascending order by name to a CSV file.
+- -f, --format - Formats jobs contained in the JIL source file in ascending order by name.
+- -n, --new - Formats as new file.
+- -o, --output - Outputs jobs contained in the JIL source file in ascending order by name to standard out.
+- -r, --reverse - Sorts jobs in descending order by name.
+- -v, --verbose - Increases output verbosity.
 
 ## Functionality
 
@@ -27,7 +28,7 @@ Basic usage for working with a JIL file.
 Exports jobs contained in the JIL source file in ascending order by name to a CSV file.
 
 ### Format
-Formats jobs contained in the JIL source file in ascending order by name, optionally as a new file.
+Formats jobs contained in the JIL source file in ascending order by name.
 
-### Info
-Outputs jobs contained in the JIL source file in ascending order by name to stdout.
+### Output
+Outputs jobs contained in the JIL source file in ascending order by name to standard out.
