@@ -1,3 +1,12 @@
+"""AutoSys JIL Utility
+
+This script allows the user to work with (format & export) JIL files.
+
+This tool accepts any file type (.txt, .jil, etc) for JIL source file path.
+
+https://github.com/mscribellito/JIL-Utility
+"""
+
 from argparse import ArgumentParser
 import csv
 from datetime import datetime

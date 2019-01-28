@@ -1,3 +1,10 @@
+"""AutoSys JIL Utility Library
+
+This script contains classes utilized by jilutil.py.
+
+https://github.com/mscribellito/JIL-Utility
+"""
+
 from re import match
 
 class JilParser:
