@@ -9,22 +9,16 @@ Job Information Language (JIL) is a scripting language that lets you define and 
 Basic usage for working with a JIL file.
 
 ### Positional Arguments
-- path (required) : path to JIL source file
+- path - path to JIL source file
 
 ```python jilutil.py some_JIL_file.txt```
 
-## Advanced Usage
-
-Advanced usage for working with a JIL file.
-
 ### Optional Arguments
+- -h, --help - show this help message and exit
+- -e, --export - export jobs to CSV file
+- -f, --format - format the JIL source file
+- -n, --new - format the JIL source file as a new file
+- -i, --info - show job info
+- -r, --reverse - sort jobs in descending order by name
 
-#### Export
-- -e, --export : export jobs to CSV file
 
-#### Format
-- -f, --format : format the JIL source file
-- -n, --new : format the JIL source file as a new file
-
-#### Shared
-- -r, --reverse : sort jobs in descending order by name
