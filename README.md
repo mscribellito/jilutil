@@ -8,7 +8,7 @@ Job Information Language (JIL) is a scripting language that lets you define and 
 
 Basic usage for working with a JIL file.
 
-```usage: jilutil.py [-h] [-e] [-f] [-n] [-i] [-r] path```
+```usage: jilutil.py [-h] [-e] [-f] [-n] [-o] [-r] [-v] path```
 
 ### Positional Arguments
 - path - path to JIL source file
