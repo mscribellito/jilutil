@@ -53,9 +53,9 @@ def format_jil(jobs, path, new, reversed):
 
     print("formatted to '{}'".format(file))
 
-def info(jobs):
+def info(jobs, reversed):
 
-    jobs.sort(key=lambda x: x.job_name)
+    jobs.sort(key=lambda x: x.job_name, reverse=reversed)
 
     for job in jobs:
 	    print(job.job_name)
@@ -75,7 +75,7 @@ def main(args):
         format_jil(jobs, args.path, args.new, args.reverse)
     
     if args.info:
-        info(jobs)
+        info(jobs, args.reverse)
 
 if __name__ == '__main__':
 
