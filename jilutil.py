@@ -13,6 +13,13 @@ from datetime import datetime
 import os
 from autosys import AutoSysJob, JilParser
 
+verbose = False
+
+def print_v(str):
+    """Verbose printer"""
+    if verbose == True:
+        print(str)
+
 def export_jil(jobs, path, reversed):
     """Exports jobs to a CSV file"""
 
@@ -34,7 +41,7 @@ def export_jil(jobs, path, reversed):
 
             writer.writerow(data.values())
 
-    print("exported to '{}'".format(file))
+    print_v("exported to '{}'".format(file))
 
 def format_jil(jobs, path, new, reversed):
     """Formats jobs to a JIL file"""
@@ -51,9 +58,10 @@ def format_jil(jobs, path, new, reversed):
         for job in jobs:
             f.write(str(job) + '\n')
 
-    print("formatted to '{}'".format(file))
+    print_v("formatted to '{}'".format(file))
 
-def info(jobs, reversed):
+def output(jobs, reversed):
+    """Outputs jobs to stdout"""
 
     jobs.sort(key=lambda x: x.job_name, reverse=reversed)
 
@@ -62,11 +70,14 @@ def info(jobs, reversed):
 
 def main(args):
 
+    global verbose
+    verbose = args.verbose
+
     jil_parser = JilParser(args.path)
 
     jobs = jil_parser.parse_jobs()
 
-    print('{} jobs parsed'.format(len(jobs)))
+    print_v('{} jobs parsed'.format(len(jobs)))
 
     if args.export:
         export_jil(jobs, args.path, args.reverse)
@@ -74,22 +85,24 @@ def main(args):
     if args.format:
         format_jil(jobs, args.path, args.new, args.reverse)
     
-    if args.info:
-        info(jobs, args.reverse)
+    if args.output:
+        output(jobs, args.reverse)
 
 if __name__ == '__main__':
 
-    parser = ArgumentParser(description='AutoSys JIL Utility')
+    parser = ArgumentParser(description='AutoSys JIL command line utility')
     parser.add_argument('path', type=str, help='path to JIL source file')
 
-    parser.add_argument('-e', '--export', action='store_true', help='export jobs to CSV file')
+    parser.add_argument('-e', '--export',   action='store_true',    help='Exports jobs contained in the JIL source file in ascending order by name to a CSV file.')
 
-    parser.add_argument('-f', '--format', action='store_true', help='format the JIL source file')
-    parser.add_argument('-n', '--new', action='store_true', help='format the JIL source file as a new file')
+    parser.add_argument('-f', '--format',   action='store_true',    help='Formats jobs contained in the JIL source file in ascending order by name.')
+    parser.add_argument('-n', '--new',      action='store_true',    help='Formats as new file.')
 
-    parser.add_argument('-i', '--info', action='store_true', help='show job info')
+    parser.add_argument('-o', '--output',   action='store_true',    help='Outputs jobs contained in the JIL source file in ascending order by name to standard out.')
 
-    parser.add_argument('-r', '--reverse', action='store_true', help='sort jobs in descending order by name')
+    parser.add_argument('-r', '--reverse',  action='store_true',    help='Sorts jobs in descending order by name.')
+
+    parser.add_argument('-v', '--verbose',  action='store_true',    help='Increases output verbosity.')
 
     args = parser.parse_args()
     
