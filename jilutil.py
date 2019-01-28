@@ -44,6 +44,13 @@ def format_jil(jobs, path, new, reversed):
 
     print("formatted to '{}'".format(file))
 
+def info(jobs):
+
+    jobs.sort(key=lambda x: x.job_name)
+
+    for job in jobs:
+	    print(job.job_name)
+
 def main(args):
 
     jil_parser = JilParser(args.path)
@@ -57,6 +64,9 @@ def main(args):
     
     if args.format:
         format_jil(jobs, args.path, args.new, args.reverse)
+    
+    if args.info:
+        info(jobs)
 
 if __name__ == '__main__':
 
@@ -67,6 +77,8 @@ if __name__ == '__main__':
 
     parser.add_argument('-f', '--format', action='store_true', help='format the JIL source file')
     parser.add_argument('-n', '--new', action='store_true', help='format the JIL source file as a new file')
+
+    parser.add_argument('-i', '--info', action='store_true', help='show job info')
 
     parser.add_argument('-r', '--reverse', action='store_true', help='sort jobs in descending order by name')
 
