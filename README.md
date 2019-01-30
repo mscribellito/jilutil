@@ -27,8 +27,20 @@ Basic usage for working with a JIL file.
 ### Export
 Exports jobs contained in the JIL source file in ascending order by name to a CSV file.
 
+Export jobs contained in JIL file:
+```python jilutil.py -e sample.jil```
+
 ### Format
 Formats jobs contained in the JIL source file in ascending order by name.
 
+Format JIL file in place:
+```python jilutil.py -f sample.jil```
+
+Format JIL file as new file:
+```python jilutil.py -f -n sample.jil```
+
 ### Output
 Outputs jobs contained in the JIL source file in ascending order by name to standard out.
+
+Output jobs contained in JIL file:
+```python jilutil.py -o sample.jil```
