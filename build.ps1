@@ -1,0 +1,1 @@
+pyinstaller --onefile  --icon=toolbox.ico --clean .\jilutil\jilutil.py
