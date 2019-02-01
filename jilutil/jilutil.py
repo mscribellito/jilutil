@@ -4,6 +4,7 @@ import csv
 from datetime import datetime
 import os
 
+from .AutoSysJob import AutoSysJob
 from .JilParser import JilParser
 
 verbose = False
