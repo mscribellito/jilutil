@@ -63,15 +63,19 @@ class AutoSysJob:
 
         atts = self._attributes.copy()
 
+        # insert special job name in comment format
         job_str = self.job_name_comment.format(atts['insert_job']) + '\n\n'
 
+        # add special insert_job & job_type attributes
         job_str += 'insert_job: {}   job_type: {}\n'.format(atts['insert_job'], atts['job_type'])
         del atts['insert_job']
         del atts['job_type']
 
+        # iterate over attribute:value pairs in alphabetical order
         for attribute, value in sorted(atts.items()):
             if not value:
                 continue
+            # append att:val pair to job string
             job_str += '{}: {}\n'.format(attribute, value)
 
         return job_str
@@ -80,17 +84,22 @@ class AutoSysJob:
     def from_str(cls, jil):
         """Creates a new job from a string"""
 
+        # create new instance and assign default attributes
         job = cls()
         job._attributes = cls().default_attributes.copy()
 
+        # force job_type onto a new line
         jil = jil.replace('job_type', '\njob_type', 1)
         jil = jil.replace('\r\n', '\n')
 
+        # split lines and strip line if not empty
         lines = [line.strip() for line in jil.split('\n') if line.strip() != '']
 
         for line in lines:
+            # check if line is a comment
             if line.startswith(cls.comments):
                 continue
+            # get the attribute:value pair
             attribute, value = line.split(':', 1)
             job.attributes[attribute.strip()] = value.strip()
 
