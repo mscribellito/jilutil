@@ -49,3 +49,6 @@ Outputs jobs contained in the JIL source file in ascending order by name to stan
 
 Output jobs contained in JIL file:
 ```python -m jilutil sample.jil -o```
+
+## Executable
+Stand alone executable (no Python required) can be compiled using pyinstaller and the build.ps1 script included.
