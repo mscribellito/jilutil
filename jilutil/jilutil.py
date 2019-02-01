@@ -65,18 +65,26 @@ def main(args):
 
     global verbose
     verbose = args.verbose
-
-    jil_parser = JilParser(args.path)
-
-    jobs = jil_parser.parse_jobs()
-
-    print_v('{} jobs parsed'.format(len(jobs)))
-
-    if args.export:
-        export_jil(jobs, args.path, args.reverse)
     
-    if args.format:
-        format_jil(jobs, args.path, args.new, args.reverse)
+    try:
+
+        jil_parser = JilParser(args.path)
+
+        jobs = jil_parser.parse_jobs()
+
+        print_v('{} jobs parsed'.format(len(jobs)))
+
+        if args.export:
+            export_jil(jobs, args.path, args.reverse)
+        
+        if args.format:
+            format_jil(jobs, args.path, args.new, args.reverse)
+        
+        if args.output:
+            output(jobs, args.reverse)
+
+    except Exception as e:
+        print(e)
+        return 1
     
-    if args.output:
-        output(jobs, args.reverse)
+    return 0
