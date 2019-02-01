@@ -51,4 +51,4 @@ Output jobs contained in JIL file:
 ```python -m jilutil sample.jil -o```
 
 ## Executable
-Stand alone executable (no Python required) can be compiled using pyinstaller and the build.ps1 script included.
+Stand alone executable (no Python required) can be compiled using pyinstaller and the build.ps1 script included. Executable will be placed in "dist" folder.
