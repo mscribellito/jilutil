@@ -17,7 +17,7 @@ if __name__ == '__main__':
     actions.add_argument('-f', '--format', action='store_true', help='Formats jobs contained in the JIL source file in ascending order by name.')
     actions.add_argument('-o', '--output', action='store_true', help='Outputs jobs contained in the JIL source file in ascending order by name to standard out.')
 
-    parser.add_argument('-a', '--attributes', action='store', help='Optional attributes to list when outputting jobs (ex: job_type,box_name).')
+    parser.add_argument('-a', '--attributes', action='store', help='Attributes to list when outputting jobs (ex: job_type,box_name).')
     parser.add_argument('-n', '--new', action='store_true', help='Formats as new file.')
     parser.add_argument('-r', '--reverse', action='store_true', help='Sorts jobs in descending order by name.')
     parser.add_argument('-v', '--verbose', action='store_true', help='Increases output verbosity.')
