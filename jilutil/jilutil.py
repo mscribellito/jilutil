@@ -59,7 +59,8 @@ def output(jobs, attributes, reversed):
 
     jobs.sort(key=lambda x: x.job_name, reverse=reversed)
 
-    attributes = [attribute.strip() for attribute in attributes.split(',') if attribute.strip() != '' and attribute in AutoSysJob.default_attributes]
+    if attributes is not None:
+        attributes = [attribute.strip() for attribute in attributes.split(',') if attribute.strip() != '' and attribute in AutoSysJob.default_attributes]
     
     for job in jobs:
 
@@ -67,12 +68,13 @@ def output(jobs, attributes, reversed):
 
         print(job.job_name, end='')
 
-        for attribute in attributes:
-            extra.append('{}: {}'.format(attribute, job.attributes[attribute]))
-        
-        if len(extra) > 0:
-            print(' -> ', end='')
-            print(' ; '.join(extra), end='')
+        if attributes is not None:
+            for attribute in attributes:
+                extra.append('{}: {}'.format(attribute, job.attributes[attribute]))
+            
+            if len(extra) > 0:
+                print(' -> ', end='')
+                print(' ; '.join(extra), end='')
 
         print('')
 
