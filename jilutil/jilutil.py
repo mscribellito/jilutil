@@ -54,13 +54,27 @@ def format(jobs, path, new, reversed):
 
     print_v("formatted to '{}'".format(file))
 
-def output(jobs, reversed):
+def output(jobs, attributes, reversed):
     """Outputs jobs contained in the JIL source file in ascending order by name to standard out."""
 
     jobs.sort(key=lambda x: x.job_name, reverse=reversed)
 
+    attributes = [attribute.strip() for attribute in attributes.split(',') if attribute.strip() != '' and attribute in AutoSysJob.default_attributes]
+    
     for job in jobs:
-	    print(job.job_name)
+
+        extra = []
+
+        print(job.job_name, end='')
+
+        for attribute in attributes:
+            extra.append('{}: {}'.format(attribute, job.attributes[attribute]))
+        
+        if len(extra) > 0:
+            print(' -> ', end='')
+            print(' ; '.join(extra), end='')
+
+        print('')
 
 def main(args):
 
@@ -79,7 +93,7 @@ def main(args):
         elif args.format:
             format(jobs, args.path, args.new, args.reverse)        
         elif args.output:
-            output(jobs, args.reverse)
+            output(jobs, args.attributes, args.reverse)
 
     except Exception as e:
         print(e)
