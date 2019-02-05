@@ -51,5 +51,20 @@ Outputs jobs contained in the JIL source file in ascending order by name to stan
 Output jobs contained in JIL file:
 ```python -m jilutil sample.jil -o```
 
+```
+SAMPLE_BOX_JOB
+SAMPLE_CMD_JOB_1
+SAMPLE_CMD_JOB_2
+```
+
+Output jobs contained in JIL file with extra attributes:
+```python -m jilutil sample.jil -o -a box_name,job_type,condition```
+
+```
+SAMPLE_BOX_JOB -> box_name:  ; job_type: BOX ; condition:
+SAMPLE_CMD_JOB_1 -> box_name: SAMPLE_BOX_JOB ; job_type: CMD ; condition:
+SAMPLE_CMD_JOB_2 -> box_name: SAMPLE_BOX_JOB ; job_type: CMD ; condition: s(SAMPLE_CMD_JOB_1)
+```
+
 ## Executable
 Stand alone executable (no Python required) can be compiled using pyinstaller and the build.ps1 script included. Executable will be placed in "dist" folder.
