@@ -14,8 +14,8 @@ def print_v(str):
     if verbose == True:
         print(str)
 
-def export_jil(jobs, path, reversed):
-    """Exports jobs to a CSV file"""
+def export(jobs, path, reversed):
+    """Exports jobs contained in the JIL source file in ascending order by name to a CSV file."""
 
     file = '{} - {}.csv'.format(os.path.splitext(path)[0], datetime.now().strftime("%Y%m%d_%H%M%S"))
     
@@ -37,8 +37,8 @@ def export_jil(jobs, path, reversed):
 
     print_v("exported to '{}'".format(file))
 
-def format_jil(jobs, path, new, reversed):
-    """Formats jobs to a JIL file"""
+def format(jobs, path, new, reversed):
+    """Formats jobs contained in the JIL source file in ascending order by name."""
 
     if new == True:
         file = '{} - {}.jil'.format(os.path.splitext(path)[0], datetime.now().strftime("%Y%m%d_%H%M%S"))
@@ -55,7 +55,7 @@ def format_jil(jobs, path, new, reversed):
     print_v("formatted to '{}'".format(file))
 
 def output(jobs, reversed):
-    """Outputs jobs to stdout"""
+    """Outputs jobs contained in the JIL source file in ascending order by name to standard out."""
 
     jobs.sort(key=lambda x: x.job_name, reverse=reversed)
 
@@ -70,18 +70,15 @@ def main(args):
     try:
 
         jil_parser = JilParser(args.path)
-
         jobs = jil_parser.parse_jobs()
 
         print_v('{} jobs parsed'.format(len(jobs)))
 
         if args.export:
-            export_jil(jobs, args.path, args.reverse)
-        
-        if args.format:
-            format_jil(jobs, args.path, args.new, args.reverse)
-        
-        if args.output:
+            export(jobs, args.path, args.reverse)        
+        elif args.format:
+            format(jobs, args.path, args.new, args.reverse)        
+        elif args.output:
             output(jobs, args.reverse)
 
     except Exception as e:
