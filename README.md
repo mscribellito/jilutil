@@ -22,8 +22,9 @@ Basic usage for working with a JIL file.
 * -h, --help - show this help message and exit
 * -e, --export - Exports jobs contained in the JIL source file in ascending order by name to a CSV file.
 * -f, --format - Formats jobs contained in the JIL source file in ascending order by name.
-* -n, --new - Formats as new file.
 * -o, --output - Outputs jobs contained in the JIL source file in ascending order by name to standard out.
+* -a, --attributes - Attributes to list when outputting jobs (ex: job_type,box_name).
+* -n, --new - Formats as new file.
 * -r, --reverse - Sorts jobs in descending order by name.
 * -v, --verbose - Increases output verbosity.
 
