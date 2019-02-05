@@ -50,7 +50,10 @@ class AutoSysJob:
         """Instantiates a new instance"""
 
         self.job_name = job_name
-        self._attributes = {}
+        
+        # assign default attributes
+        self._attributes = self.default_attributes.copy()
+        self._attributes['insert_job'] = job_name
     
     @property
     def attributes(self):
@@ -84,9 +87,7 @@ class AutoSysJob:
     def from_str(cls, jil):
         """Creates a new job from a string"""
 
-        # create new instance and assign default attributes
         job = cls()
-        job._attributes = cls().default_attributes.copy()
 
         # force job_type onto a new line
         jil = jil.replace('job_type', '\njob_type', 1)
